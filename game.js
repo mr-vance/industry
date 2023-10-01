@@ -1,8 +1,9 @@
 var config = {
-    width: 800,
-    height: 600,
+    width: 600,
+    height: 500,
     backgroundColor: 0x000000,
-    scene: [homePage, gamePage]
+    scene: [homePage, gamePage],
+    pixelArt: true
 }
   
 

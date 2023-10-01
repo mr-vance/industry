@@ -1,4 +1,4 @@
-# Industry Game
+# Industry
 
 ## Description
 Industry is a web-based game where players combine raw materials to create products. The game is accessible through a web browser.
