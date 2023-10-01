@@ -41,6 +41,7 @@ This project is licensed under the [MIT License](LICENSE).
 ## Credits
 - Wouldn't have done it without the extra push from the [Lazy Devs](https://discord.gg/nmwMGYTKSn) fam.
 - This game was developed as part of the game jam that took place in October 2023. More details on [itch.io](https://itch.io/jam/lazy-jam-oct-2023)
+- Development Framework: [PhaserJS](https://phaser.io/)
 
 ## Support or Contact
 Just follow me on X for God'sake. [@br_vance](https://twitter.com/br_vance)

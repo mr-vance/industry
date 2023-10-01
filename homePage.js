@@ -6,7 +6,7 @@ class homePage extends Phaser.Scene {
 
     preload() {
         // Load the background image
-        this.load.image('home-background', 'assets/images/industry-bg.jpg');
+        this.load.image('home-background', 'assets/images/home-bg.jpg');
         // Load the button image
         this.load.image('startButton', 'assets/images/play-button.png');
     }

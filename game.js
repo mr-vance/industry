@@ -1,6 +1,6 @@
 var config = {
-    width: 600,
-    height: 500,
+    width: window.innerWidth,
+    height: window.innerHeight,
     backgroundColor: 0x000000,
     scene: [homePage, gamePage],
     pixelArt: true
