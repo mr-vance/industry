@@ -6,29 +6,31 @@ class homePage extends Phaser.Scene {
 
     preload() {
         // Load the background image
-        this.load.image('background', 'assets/images/industry-bg.jpg');
+        this.load.image('home-background', 'assets/images/industry-bg.jpg');
         // Load the button image
         this.load.image('startButton', 'assets/images/play-button.png');
     }
 
     create() {
-      // Add the background image
-      this.add.image(400, 300, 'background');
+        // Get the width and height of the scene
+        const sceneWidth = this.sys.game.config.width;
+        const sceneHeight = this.sys.game.config.height;
 
-      // Create a "Start" button and set its callback
-      const startButton = this.add.image(400, 450, 'startButton').setInteractive();
+        // Add the background image and set its scale to fit the scene
+        const background = this.add.image(sceneWidth / 2, sceneHeight / 2, 'home-background');
+        background.setScale(sceneWidth / background.width, sceneHeight / background.height);
 
-      // Resize the button
-      startButton.setScale(0.25); // Adjust the scale factor as needed
+        // Create a "Start" button and set its callback
+        const startButton = this.add.image(300, 450, 'startButton').setInteractive();
 
-      // Handle button click event
-      startButton.on('pointerdown', () => {
-        this.scene.start("playGame");
-      });
+        // Resize the button
+        startButton.setScale(0.25); // Adjust the scale factor as needed
 
+        // Handle button click event
+        startButton.on('pointerdown', () => {
+            this.scene.start("playGame");
+        });
 
-      // Make the scene fullscreen
-      this.scale.startFullscreen();
     }
 
 }
