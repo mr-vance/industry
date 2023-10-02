@@ -8,6 +8,9 @@ class gamePage extends Phaser.Scene {
         this.load.image('blue', 'assets/material/firstLevel/blue.png');
         this.load.image('green', 'assets/material/firstLevel/green.png');
         this.load.image('red', 'assets/material/firstLevel/red.png');
+        this.load.image('orange', 'assets/material/firstLevel/orange.png');
+        this.load.image('purple', 'assets/material/firstLevel/purple.png');
+        this.load.image('yellow', 'assets/material/firstLevel/yellow.png');
         this.load.image('validateButton', 'assets/buttons/blue_button.png');
         this.load.image('exitButton', 'assets/buttons/red_button.png');
         this.load.image('heart', 'assets/game-items/heart.png');
@@ -32,12 +35,20 @@ class gamePage extends Phaser.Scene {
         this.add.image(400, 300, 'monitor-frame');
 
         // Create the quiz options as images, resizing them to fit the background
-        const red = this.add.image(centerX - 150, centerY, 'red').setInteractive();
+        const red = this.add.image(centerX - 100, centerY-30, 'red').setInteractive();
         red.setScale(0.5); // Resize the icon
-        const blue = this.add.image(centerX, centerY, 'blue').setInteractive();
+        const blue = this.add.image(centerX, centerY-30, 'blue').setInteractive();
         blue.setScale(0.5); // Resize the icon
-        const green = this.add.image(centerX + 150, centerY, 'green').setInteractive();
+        const green = this.add.image(centerX + 100, centerY-30, 'green').setInteractive();
         green.setScale(0.5); // Resize the icon
+
+        // Create the quiz options as images, resizing them to fit the background
+        const orange = this.add.image(centerX - 100, centerY+30, 'orange').setInteractive();
+        orange.setScale(0.5); // Resize the icon
+        const purple = this.add.image(centerX, centerY+30, 'purple').setInteractive();
+        purple.setScale(0.5); // Resize the icon
+        const yellow = this.add.image(centerX + 100, centerY+30, 'yellow').setInteractive();
+        yellow.setScale(0.5); // Resize the icon
 
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 30;
@@ -110,6 +121,39 @@ class gamePage extends Phaser.Scene {
             } else {
                 selectedOptions.push('green');
                 green.setTint(0x00ff00); // Highlight selected option
+            }
+        });
+
+        orange.on('pointerdown', () => {
+            // Toggle selection
+            if (selectedOptions.includes('orange')) {
+                selectedOptions.splice(selectedOptions.indexOf('orange'), 1);
+                orange.clearTint();
+            } else {
+                selectedOptions.push('orange');
+                orange.setTint(0x00ff00); // Highlight selected option
+            }
+        });
+
+        purple.on('pointerdown', () => {
+            // Toggle selection
+            if (selectedOptions.includes('purple')) {
+                selectedOptions.splice(selectedOptions.indexOf('purple'), 1);
+                purple.clearTint();
+            } else {
+                selectedOptions.push('purple');
+                purple.setTint(0x00ff00); // Highlight selected option
+            }
+        });
+
+        yellow.on('pointerdown', () => {
+            // Toggle selection
+            if (selectedOptions.includes('yellow')) {
+                selectedOptions.splice(selectedOptions.indexOf('yellow'), 1);
+                yellow.clearTint();
+            } else {
+                selectedOptions.push('yellow');
+                yellow.setTint(0x00ff00); // Highlight selected option
             }
         });
 
