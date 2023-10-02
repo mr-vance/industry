@@ -9,6 +9,9 @@ class homePage extends Phaser.Scene {
         this.load.image('home-background', 'assets/images/home-bg.jpg');
         // Load the button image
         this.load.image('emptyButton', 'assets/images/ui-pack/green_button00.png');
+        //Load the font
+        this.load.bitmapFont('arcadeFont', 'assets/images/arcade.png', 'assets/images/xml/arcade.xml');
+
     }
 
     create() {
@@ -27,12 +30,9 @@ class homePage extends Phaser.Scene {
         const emptyButton = this.add.image(0, 0, 'emptyButton');
         customStartButton.add(emptyButton);
 
-        // Add text on top of the button and add it to the container
-        const buttonText = this.add.text(0, 0, 'Start', {
-            fontSize: '20px',
-            fill: '#000000',
-            align: 'center',
-        });
+        // Create text using the Arcade font
+        const buttonText = this.add.bitmapText(0, 0, 'arcadeFont', 'Start', 20);
+        
         // Center the text within the button
         Phaser.Display.Align.In.Center(buttonText, emptyButton);
         customStartButton.add(buttonText); // Add text to the container

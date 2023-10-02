@@ -2,7 +2,7 @@ class mainPage extends Phaser.Scene
 {
     constructor ()
     {
-        super();
+        super("testGame");
 
         this.wrapRect;
         this.aliens = [];
@@ -42,14 +42,3 @@ class mainPage extends Phaser.Scene
         Phaser.Actions.WrapInRectangle(this.aliens, this.wrapRect, 8);
     }
 }
-
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: '#000042',
-    parent: 'phaser-example',
-    scene: Example
-};
-
-const game = new Phaser.Game(config);

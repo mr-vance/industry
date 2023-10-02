@@ -1,8 +1,9 @@
 var config = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor: 0x000000,
-    scene: [homePage, gamePage],
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    backgroundColor: '#000042',
+    scene: [homePage, gamePage, mainPage],
     pixelArt: true
 }
   

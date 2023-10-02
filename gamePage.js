@@ -94,7 +94,7 @@ class gamePage extends Phaser.Scene {
 
         // Handle button click event
         exitButton.on('pointerdown', () => {
-            this.scene.start("bootGame");
+            this.scene.start("testGame");
         });
     }
 }
