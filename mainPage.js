@@ -3,7 +3,6 @@ class mainPage extends Phaser.Scene {
         super("homePage");
 
         this.wrapRect;
-        this.aliens = [];
     }
 
     preload() {

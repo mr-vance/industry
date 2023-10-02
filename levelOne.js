@@ -50,6 +50,13 @@ class levelOne extends Phaser.Scene {
         const yellow = this.add.image(centerX + 100, centerY+30, 'yellow').setInteractive();
         yellow.setScale(0.7); // Resize the icon
 
+        // Create a see-saw animation for all quiz options
+        const quizOptions = [red, blue, green, orange, purple, yellow];
+        quizOptions.forEach((option) => {
+            this.addQuizOptionAnimation(option);
+        });
+
+
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 15;
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
@@ -203,6 +210,17 @@ class levelOne extends Phaser.Scene {
         // Handle button click event
         exitButton.on('pointerdown', () => {
             this.scene.start("homePage");
+        });
+    }
+
+    addQuizOptionAnimation(option) {
+        // Define the rotation animation
+        this.tweens.add({
+            targets: option,
+            rotation: Math.PI * 2, // Rotate 360 degrees (in radians)
+            duration: 2000, // Duration of one full rotation (adjust as needed)
+            ease: 'Linear', // Linear easing for a constant speed rotation
+            repeat: -1, // Repeat indefinitely
         });
     }
 }

@@ -50,6 +50,12 @@ class levelThree extends Phaser.Scene {
         const shield = this.add.image(centerX + 100, centerY+30, 'shield').setInteractive();
         shield.setScale(0.17); // Resize the icon
 
+        // Create a see-saw animation for all quiz options
+        const quizOptions = [hammer, book, envelope, helmet, map, shield];
+        quizOptions.forEach((option) => {
+            this.addQuizOptionAnimation(option);
+        });
+
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 7;
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
@@ -171,9 +177,12 @@ class levelThree extends Phaser.Scene {
 
             // Display a message based on the answer
             if (isCorrect) {
-                console.log('Correct! You can make a map candy with those.');
+                console.log('Correct! A fighter can send a message with those.');
                 // Stop the timer when the player gets the correct answer
                 correctAnswerGiven = true;
+
+                // Go to the next level ("gameEnd") on correct answer
+                this.scene.start("winnerPage");
             } else {
                 console.log('Incorrect! Check your selections.');
 
@@ -202,4 +211,16 @@ class levelThree extends Phaser.Scene {
             this.scene.start("homePage");
         });
     }
+
+    addQuizOptionAnimation(option) {
+        // Define the fade-in/fade-out animation
+        this.tweens.add({
+            targets: option,
+            alpha: { from: 0, to: 1 }, // Start with 0 opacity and fade in to 1
+            duration: 1000, // Duration of the fade-in animation (adjust as needed)
+            yoyo: true, // Fade back out after fading in
+            repeat: -1, // Repeat indefinitely
+        });
+    }
+    
 }

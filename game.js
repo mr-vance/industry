@@ -3,7 +3,7 @@ var config = {
     width: 800,
     height: 600,
     backgroundColor: '#ffffff',
-    scene: [mainPage, levelOne, levelTwo, levelThree],
+    scene: [gameEnd, mainPage, levelOne, levelTwo, levelThree],
     pixelArt: true
 }
   

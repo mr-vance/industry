@@ -50,6 +50,13 @@ class levelTwo extends Phaser.Scene {
         const ram = this.add.image(centerX + 100, centerY+30, 'ram').setInteractive();
         ram.setScale(1); // Resize the icon
 
+
+        // Create a see-saw animation for all quiz options
+        const quizOptions = [cpu, floppyOne, floppyTwo, keyboard, controller, ram];
+        quizOptions.forEach((option) => {
+            this.addQuizOptionAnimation(option);
+        });
+
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 10;
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
@@ -203,6 +210,19 @@ class levelTwo extends Phaser.Scene {
         // Handle button click event
         exitButton.on('pointerdown', () => {
             this.scene.start("homePage");
+        });
+    }
+
+    addQuizOptionAnimation(option) {
+        const startY = option.y;
+    
+        // Define the see-saw animation
+        this.tweens.add({
+            targets: option,
+            y: startY + 10, // Move down by 10 pixels
+            duration: 1000, // Duration of one "swing"
+            yoyo: true, // Swing back and forth
+            repeat: -1, // Repeat indefinitely
         });
     }
 }
