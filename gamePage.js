@@ -1,6 +1,6 @@
 class gamePage extends Phaser.Scene {
     constructor() {
-      super("playGame");
+        super("playGame");
     }
 
     preload() {
@@ -11,25 +11,41 @@ class gamePage extends Phaser.Scene {
         this.load.image('validateButton', 'assets/images/finish-button.png');
         this.load.image('exitButton', 'assets/images/exit-button.png');
         this.load.image('heart', 'assets/images/heart.png');
+        this.load.image('monitor-frame', 'assets/images/monitor.png'); // Add monitor frame image
     }
 
     create() {
-        // Get the width and height of the scene
-        const sceneWidth = this.sys.game.config.width;
-        const sceneHeight = this.sys.game.config.height;
+        //  This is our 'wrapping rectangle'
+        //  When a sprite leaves this, it'll be wrapped around
+        this.wrapRect = new Phaser.Geom.Rectangle(214, 132, 367, 239);
 
-        // Add the background image and set its scale to fit the scene
-        const background = this.add.image(sceneWidth / 2, sceneHeight / 2, 'game-background');
-        background.setScale(sceneWidth / background.width, sceneHeight / background.height);
+        // Create an image using the background texture
+        const background = this.add.image(this.wrapRect.x, this.wrapRect.y, 'game-background');
+        background.setOrigin(0, 0);
+        background.displayWidth = this.wrapRect.width;
+        background.displayHeight = this.wrapRect.height;
 
-        // Create the quiz options as images
-        const tyre = this.add.image(200, 300, 'tyre').setInteractive();
-        const engine = this.add.image(400, 300, 'engine').setInteractive();
-        const fish = this.add.image(600, 300, 'fish').setInteractive();
+        // Calculate the center of the background
+        const centerX = this.wrapRect.x + this.wrapRect.width / 2;
+        const centerY = this.wrapRect.y + this.wrapRect.height / 2;
+
+        this.add.image(400, 300, 'monitor-frame');
+
+        // Create a custom "Start" button container centered on the background
+        const customStartButton = this.add.container(centerX, centerY);
+
+        // Create the quiz options as images, resizing them to fit the background
+        const tyre = this.add.image(centerX - 150, centerY, 'tyre').setInteractive();
+        tyre.setScale(0.5); // Resize the icon
+        const engine = this.add.image(centerX, centerY, 'engine').setInteractive();
+        engine.setScale(0.5); // Resize the icon
+        const fish = this.add.image(centerX + 150, centerY, 'fish').setInteractive();
+        fish.setScale(0.5); // Resize the icon
 
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 30;
-        const timerText = this.add.bitmapText(20, 20, 'arcadeFont', `Time: ${timeLeft}`, 32);
+        const timerText = this.add.bitmapText(centerX - 40, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 24);
+        timerText.setOrigin(0.5, 0.5);
 
         // Flag to track if the correct answer has been given
         let correctAnswerGiven = false;
@@ -55,7 +71,8 @@ class gamePage extends Phaser.Scene {
 
         // Create and position heart icons
         for (let i = 0; i < 3; i++) {
-            const heart = this.add.image(20 + i * heartSpacing, 70, 'heart');
+            const heart = this.add.image(centerX - 60 + i * heartSpacing, centerY + 100, 'heart');
+            heart.setScale(0.5); // Resize the heart icon
             hearts.push(heart);
         }
 
@@ -97,10 +114,8 @@ class gamePage extends Phaser.Scene {
         });
 
         // Create a "Validate" button and set its callback
-        const validateButton = this.add.image(400, 450, 'validateButton').setInteractive();
-
-        // Resize the button
-        validateButton.setScale(0.2); // Adjust the scale factor as needed
+        const validateButton = this.add.image(centerX, centerY + 150, 'validateButton').setInteractive();
+        validateButton.setScale(0.2); // Resize the button
 
         // Handle button click event to validate the answer
         validateButton.on('pointerdown', () => {
@@ -131,10 +146,8 @@ class gamePage extends Phaser.Scene {
         });
 
         // Create an "Exit" button and set its callback
-        const exitButton = this.add.image(700, 500, 'exitButton').setInteractive();
-
-        // Resize the button
-        exitButton.setScale(0.25); // Adjust the scale factor as needed
+        const exitButton = this.add.image(centerX + 150, centerY + 150, 'exitButton').setInteractive();
+        exitButton.setScale(0.2); // Resize the button
 
         // Handle button click event
         exitButton.on('pointerdown', () => {
