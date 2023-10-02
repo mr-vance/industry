@@ -51,7 +51,7 @@ class levelTwo extends Phaser.Scene {
         ram.setScale(1); // Resize the icon
 
         // Create a countdown timer with an initial time of 30 seconds
-        let timeLeft = 12;
+        let timeLeft = 10;
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
         timerText.setOrigin(0.5, 0.5);
 
