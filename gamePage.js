@@ -5,9 +5,9 @@ class gamePage extends Phaser.Scene {
 
     preload() {
         this.load.image('game-background', 'assets/backgrounds/game-bg.png');
-        this.load.image('tyre', 'assets/game-items/palm.png');
-        this.load.image('engine', 'assets/images/snow.png');
-        this.load.image('fish', 'assets/images/pink.png');
+        this.load.image('blue', 'assets/material/firstLevel/blue.png');
+        this.load.image('green', 'assets/material/firstLevel/green.png');
+        this.load.image('red', 'assets/material/firstLevel/red.png');
         this.load.image('validateButton', 'assets/buttons/blue_button.png');
         this.load.image('exitButton', 'assets/buttons/red_button.png');
         this.load.image('heart', 'assets/game-items/heart.png');
@@ -32,17 +32,20 @@ class gamePage extends Phaser.Scene {
         this.add.image(400, 300, 'monitor-frame');
 
         // Create the quiz options as images, resizing them to fit the background
-        const tyre = this.add.image(centerX - 150, centerY, 'tyre').setInteractive();
-        tyre.setScale(0.5); // Resize the icon
-        const engine = this.add.image(centerX, centerY, 'engine').setInteractive();
-        engine.setScale(0.5); // Resize the icon
-        const fish = this.add.image(centerX + 150, centerY, 'fish').setInteractive();
-        fish.setScale(0.5); // Resize the icon
+        const red = this.add.image(centerX - 150, centerY, 'red').setInteractive();
+        red.setScale(0.5); // Resize the icon
+        const blue = this.add.image(centerX, centerY, 'blue').setInteractive();
+        blue.setScale(0.5); // Resize the icon
+        const green = this.add.image(centerX + 150, centerY, 'green').setInteractive();
+        green.setScale(0.5); // Resize the icon
 
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 30;
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
         timerText.setOrigin(0.5, 0.5);
+
+        const levelText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Candy factory: How do we make purple?`, 7);
+        levelText.setOrigin(0.5, -3);
 
         // Flag to track if the correct answer has been given
         let correctAnswerGiven = false;
@@ -64,7 +67,7 @@ class gamePage extends Phaser.Scene {
 
         // Create an array to store heart icons
         const hearts = [];
-        const heartSpacing = 20; // Adjust the spacing between hearts
+        const heartSpacing = 27; // Adjust the spacing between hearts
 
         // Create and position heart icons
         for (let i = 0; i < 3; i++) {
@@ -77,36 +80,36 @@ class gamePage extends Phaser.Scene {
         const selectedOptions = [];
 
         // Handle option click events
-        tyre.on('pointerdown', () => {
+        red.on('pointerdown', () => {
             // Toggle selection
-            if (selectedOptions.includes('tyre')) {
-                selectedOptions.splice(selectedOptions.indexOf('tyre'), 1);
-                tyre.clearTint();
+            if (selectedOptions.includes('red')) {
+                selectedOptions.splice(selectedOptions.indexOf('red'), 1);
+                red.clearTint();
             } else {
-                selectedOptions.push('tyre');
-                tyre.setTint(0x00ff00); // Highlight selected option
+                selectedOptions.push('red');
+                red.setTint(0x00ff00); // Highlight selected option
             }
         });
 
-        engine.on('pointerdown', () => {
+        blue.on('pointerdown', () => {
             // Toggle selection
-            if (selectedOptions.includes('engine')) {
-                selectedOptions.splice(selectedOptions.indexOf('engine'), 1);
-                engine.clearTint();
+            if (selectedOptions.includes('blue')) {
+                selectedOptions.splice(selectedOptions.indexOf('blue'), 1);
+                blue.clearTint();
             } else {
-                selectedOptions.push('engine');
-                engine.setTint(0x00ff00); // Highlight selected option
+                selectedOptions.push('blue');
+                blue.setTint(0x00ff00); // Highlight selected option
             }
         });
 
-        fish.on('pointerdown', () => {
+        green.on('pointerdown', () => {
             // Toggle selection
-            if (selectedOptions.includes('fish')) {
-                selectedOptions.splice(selectedOptions.indexOf('fish'), 1);
-                fish.clearTint();
+            if (selectedOptions.includes('green')) {
+                selectedOptions.splice(selectedOptions.indexOf('green'), 1);
+                green.clearTint();
             } else {
-                selectedOptions.push('fish');
-                fish.setTint(0x00ff00); // Highlight selected option
+                selectedOptions.push('green');
+                green.setTint(0x00ff00); // Highlight selected option
             }
         });
 
@@ -118,13 +121,13 @@ class gamePage extends Phaser.Scene {
 
         // Handle button click event to validate the answer
         validateButton.on('pointerdown', () => {
-            // Check if the selected options are correct (tyre and engine)
-            const correctOptions = ['tyre', 'engine'];
+            // Check if the selected options are correct (red and blue)
+            const correctOptions = ['red', 'blue'];
             const isCorrect = selectedOptions.sort().toString() === correctOptions.sort().toString();
 
             // Display a message based on the answer
             if (isCorrect) {
-                console.log('Correct! You can manufacture a car with a tyre and an engine.');
+                console.log('Correct! You can make a purple candy with those.');
                 // Stop the timer when the player gets the correct answer
                 correctAnswerGiven = true;
             } else {
