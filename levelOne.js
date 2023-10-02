@@ -1,10 +1,10 @@
-class gamePage extends Phaser.Scene {
+class levelOne extends Phaser.Scene {
     constructor() {
-        super("playGame");
+        super("firstLevel");
     }
 
     preload() {
-        this.load.image('game-background', 'assets/backgrounds/game-bg.png');
+        this.load.image('game1-background', 'assets/backgrounds/level-one-bg.jpg');
         this.load.image('blue', 'assets/material/firstLevel/blue.png');
         this.load.image('green', 'assets/material/firstLevel/green.png');
         this.load.image('red', 'assets/material/firstLevel/red.png');
@@ -23,7 +23,7 @@ class gamePage extends Phaser.Scene {
         this.wrapRect = new Phaser.Geom.Rectangle(214, 132, 367, 239);
 
         // Create an image using the background texture
-        const background = this.add.image(this.wrapRect.x, this.wrapRect.y, 'game-background');
+        const background = this.add.image(this.wrapRect.x, this.wrapRect.y, 'game1-background');
         background.setOrigin(0, 0);
         background.displayWidth = this.wrapRect.width;
         background.displayHeight = this.wrapRect.height;
@@ -36,22 +36,22 @@ class gamePage extends Phaser.Scene {
 
         // Create the quiz options as images, resizing them to fit the background
         const red = this.add.image(centerX - 100, centerY-30, 'red').setInteractive();
-        red.setScale(0.5); // Resize the icon
+        red.setScale(0.7); // Resize the icon
         const blue = this.add.image(centerX, centerY-30, 'blue').setInteractive();
-        blue.setScale(0.5); // Resize the icon
+        blue.setScale(0.7); // Resize the icon
         const green = this.add.image(centerX + 100, centerY-30, 'green').setInteractive();
-        green.setScale(0.5); // Resize the icon
+        green.setScale(0.7); // Resize the icon
 
         // Create the quiz options as images, resizing them to fit the background
         const orange = this.add.image(centerX - 100, centerY+30, 'orange').setInteractive();
-        orange.setScale(0.5); // Resize the icon
+        orange.setScale(0.7); // Resize the icon
         const purple = this.add.image(centerX, centerY+30, 'purple').setInteractive();
-        purple.setScale(0.5); // Resize the icon
+        purple.setScale(0.7); // Resize the icon
         const yellow = this.add.image(centerX + 100, centerY+30, 'yellow').setInteractive();
-        yellow.setScale(0.5); // Resize the icon
+        yellow.setScale(0.7); // Resize the icon
 
         // Create a countdown timer with an initial time of 30 seconds
-        let timeLeft = 30;
+        let timeLeft = 15;
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
         timerText.setOrigin(0.5, 0.5);
 
@@ -71,7 +71,7 @@ class gamePage extends Phaser.Scene {
                 if (timeLeft <= 0) {
                     // Time's up, player loses the game
                     console.log('Time\'s up! You lose.');
-                    this.scene.start("testGame"); // You may want to go back to the main menu or a game over scene
+                    this.scene.start("homePage"); // You may want to go back to the main menu or a game over scene
                 }
             }
         };
@@ -174,6 +174,9 @@ class gamePage extends Phaser.Scene {
                 console.log('Correct! You can make a purple candy with those.');
                 // Stop the timer when the player gets the correct answer
                 correctAnswerGiven = true;
+
+                // Go to the next level ("secondLevel") on correct answer
+                this.scene.start("secondLevel");
             } else {
                 console.log('Incorrect! Check your selections.');
 
@@ -186,7 +189,7 @@ class gamePage extends Phaser.Scene {
                 // Check if the player has lost all lives
                 if (hearts.length === 0) {
                     console.log('Game over! You ran out of lives.');
-                    this.scene.start("testGame"); // You may want to go back to the main menu or a game over scene
+                    this.scene.start("homePage"); // You may want to go back to the main menu or a game over scene
                 }
             }
         });
@@ -199,7 +202,7 @@ class gamePage extends Phaser.Scene {
 
         // Handle button click event
         exitButton.on('pointerdown', () => {
-            this.scene.start("testGame");
+            this.scene.start("homePage");
         });
     }
 }

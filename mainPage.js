@@ -1,6 +1,6 @@
 class mainPage extends Phaser.Scene {
     constructor() {
-        super("testGame");
+        super("homePage");
 
         this.wrapRect;
         this.aliens = [];
@@ -54,7 +54,7 @@ class mainPage extends Phaser.Scene {
 
         // Handle button click event
         customStartButton.on('pointerdown', () => {
-            this.scene.start("playGame");
+            this.scene.start("firstLevel");
         });
     }
 
