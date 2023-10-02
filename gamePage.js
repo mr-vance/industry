@@ -31,9 +31,6 @@ class gamePage extends Phaser.Scene {
 
         this.add.image(400, 300, 'monitor-frame');
 
-        // Create a custom "Start" button container centered on the background
-        const customStartButton = this.add.container(centerX, centerY);
-
         // Create the quiz options as images, resizing them to fit the background
         const tyre = this.add.image(centerX - 150, centerY, 'tyre').setInteractive();
         tyre.setScale(0.5); // Resize the icon
@@ -44,7 +41,7 @@ class gamePage extends Phaser.Scene {
 
         // Create a countdown timer with an initial time of 30 seconds
         let timeLeft = 30;
-        const timerText = this.add.bitmapText(centerX - 40, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 24);
+        const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
         timerText.setOrigin(0.5, 0.5);
 
         // Flag to track if the correct answer has been given
@@ -67,12 +64,12 @@ class gamePage extends Phaser.Scene {
 
         // Create an array to store heart icons
         const hearts = [];
-        const heartSpacing = 40; // Adjust the spacing between hearts
+        const heartSpacing = 20; // Adjust the spacing between hearts
 
         // Create and position heart icons
         for (let i = 0; i < 3; i++) {
-            const heart = this.add.image(centerX - 60 + i * heartSpacing, centerY + 100, 'heart');
-            heart.setScale(0.5); // Resize the heart icon
+            const heart = this.add.image(centerX - 30 + i * heartSpacing, centerY + 100, 'heart');
+            heart.setScale(0.4); // Resize the heart icon
             hearts.push(heart);
         }
 
@@ -114,8 +111,8 @@ class gamePage extends Phaser.Scene {
         });
 
         // Create a "Validate" button and set its callback
-        const validateButton = this.add.image(centerX, centerY + 150, 'validateButton').setInteractive();
-        validateButton.setScale(0.2); // Resize the button
+        const validateButton = this.add.image(centerX - 150, centerY + 100, 'validateButton').setInteractive();
+        validateButton.setScale(0.1); // Resize the button
 
         // Handle button click event to validate the answer
         validateButton.on('pointerdown', () => {
@@ -146,8 +143,8 @@ class gamePage extends Phaser.Scene {
         });
 
         // Create an "Exit" button and set its callback
-        const exitButton = this.add.image(centerX + 150, centerY + 150, 'exitButton').setInteractive();
-        exitButton.setScale(0.2); // Resize the button
+        const exitButton = this.add.image(centerX + 150, centerY + 100, 'exitButton').setInteractive();
+        exitButton.setScale(0.1); // Resize the button
 
         // Handle button click event
         exitButton.on('pointerdown', () => {
