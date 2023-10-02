@@ -29,6 +29,28 @@ class gamePage extends Phaser.Scene {
         const engine = this.add.image(400, 300, 'engine').setInteractive();
         const fish = this.add.image(600, 300, 'fish').setInteractive();
 
+        // Create a countdown timer with an initial time of 30 seconds
+        let timeLeft = 30;
+        const timerText = this.add.bitmapText(20, 20, 'arcadeFont', `Time: ${timeLeft}`, 32);
+
+        // Flag to track if the correct answer has been given
+        let correctAnswerGiven = false;
+
+        // Create an update function to decrement the timer
+        this.update = function () {
+            if (!correctAnswerGiven && timeLeft > 0) {
+                // Decrement the timer
+                timeLeft -= this.game.loop.delta / 1000; // Adjust for frame rate
+                // Update the timer text
+                timerText.text = `Time: ${Math.ceil(timeLeft)}`;
+                if (timeLeft <= 0) {
+                    // Time's up, player loses the game
+                    console.log('Time\'s up! You lose.');
+                    this.scene.start("testGame"); // You may want to go back to the main menu or a game over scene
+                }
+            }
+        };
+
         // Create an array to keep track of selected options
         const selectedOptions = [];
 
@@ -81,6 +103,8 @@ class gamePage extends Phaser.Scene {
             // Display a message based on the answer
             if (isCorrect) {
                 console.log('Correct! You can manufacture a car with a tyre and an engine.');
+                // Stop the timer when the player gets the correct answer
+                correctAnswerGiven = true;
             } else {
                 console.log('Incorrect! Check your selections.');
             }
