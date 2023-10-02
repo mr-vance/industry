@@ -4,14 +4,14 @@ class gamePage extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('game-background', 'assets/images/game-bg.png');
-        this.load.image('tyre', 'assets/images/palm.png');
+        this.load.image('game-background', 'assets/backgrounds/game-bg.png');
+        this.load.image('tyre', 'assets/game-items/palm.png');
         this.load.image('engine', 'assets/images/snow.png');
         this.load.image('fish', 'assets/images/pink.png');
-        this.load.image('validateButton', 'assets/images/finish-button.png');
-        this.load.image('exitButton', 'assets/images/exit-button.png');
-        this.load.image('heart', 'assets/images/heart.png');
-        this.load.image('monitor-frame', 'assets/images/monitor.png'); // Add monitor frame image
+        this.load.image('validateButton', 'assets/buttons/blue_button.png');
+        this.load.image('exitButton', 'assets/buttons/red_button.png');
+        this.load.image('heart', 'assets/game-items/heart.png');
+        this.load.image('monitor-frame', 'assets/backgrounds/monitor.png');
     }
 
     create() {
@@ -110,9 +110,11 @@ class gamePage extends Phaser.Scene {
             }
         });
 
-        // Create a "Validate" button and set its callback
-        const validateButton = this.add.image(centerX - 150, centerY + 100, 'validateButton').setInteractive();
-        validateButton.setScale(0.1); // Resize the button
+        // Create a "Validate" button with text and set its callback
+        const validateButton = this.add.image(centerX - 140, centerY + 100, 'validateButton').setInteractive();
+        validateButton.setScale(0.4); // Resize the button
+        const validateButtonText = this.add.bitmapText(centerX - 140, centerY + 100, 'arcadeFont', 'Done', 10);
+        validateButtonText.setOrigin(0.5, 0.5);
 
         // Handle button click event to validate the answer
         validateButton.on('pointerdown', () => {
@@ -142,9 +144,11 @@ class gamePage extends Phaser.Scene {
             }
         });
 
-        // Create an "Exit" button and set its callback
-        const exitButton = this.add.image(centerX + 150, centerY + 100, 'exitButton').setInteractive();
-        exitButton.setScale(0.1); // Resize the button
+        // Create an "Exit" button with text and set its callback
+        const exitButton = this.add.image(centerX + 140, centerY + 100, 'exitButton').setInteractive();
+        exitButton.setScale(0.4); // Resize the button
+        const exitButtonText = this.add.bitmapText(centerX + 140, centerY + 100, 'arcadeFont', 'Exit', 10);
+        exitButtonText.setOrigin(0.5, 0.5);
 
         // Handle button click event
         exitButton.on('pointerdown', () => {

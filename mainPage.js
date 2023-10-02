@@ -7,10 +7,10 @@ class mainPage extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('monitor', 'assets/images/monitor.png');
-        this.load.image('background', 'assets/images/home-bg.jpg');
-        this.load.image('emptyButton', 'assets/images/ui-pack/green_button00.png');
-        this.load.bitmapFont('arcadeFont', 'assets/images/arcade.png', 'assets/images/xml/arcade.xml');
+        this.load.image('monitor', 'assets/backgrounds/monitor.png');
+        this.load.image('background', 'assets/backgrounds/home-bg.jpg');
+        this.load.image('emptyButton', 'assets/buttons/green_button.png');
+        this.load.bitmapFont('arcadeFont', 'assets/fonts/arcade.png', 'assets/fonts/arcade.xml');
     }
 
     create() {
