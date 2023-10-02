@@ -55,7 +55,7 @@ class levelThree extends Phaser.Scene {
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
         timerText.setOrigin(0.5, 0.5);
 
-        const levelText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Military factory: How do send a message?`, 7);
+        const levelText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Military industry: How do send a message?`, 7);
         levelText.setOrigin(0.5, -3);
 
         // Flag to track if the correct answer has been given
