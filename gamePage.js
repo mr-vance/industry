@@ -4,15 +4,13 @@ class gamePage extends Phaser.Scene {
     }
 
     preload() {
-        // Load the background image
         this.load.image('game-background', 'assets/images/game-bg.png');
-        // Load the images for the quiz options
         this.load.image('tyre', 'assets/images/palm.png');
         this.load.image('engine', 'assets/images/snow.png');
         this.load.image('fish', 'assets/images/pink.png');
-        // Load the button image
         this.load.image('validateButton', 'assets/images/finish-button.png');
         this.load.image('exitButton', 'assets/images/exit-button.png');
+        this.load.image('heart', 'assets/images/heart.png');
     }
 
     create() {
@@ -50,6 +48,16 @@ class gamePage extends Phaser.Scene {
                 }
             }
         };
+
+        // Create an array to store heart icons
+        const hearts = [];
+        const heartSpacing = 40; // Adjust the spacing between hearts
+
+        // Create and position heart icons
+        for (let i = 0; i < 3; i++) {
+            const heart = this.add.image(20 + i * heartSpacing, 70, 'heart');
+            hearts.push(heart);
+        }
 
         // Create an array to keep track of selected options
         const selectedOptions = [];
@@ -107,6 +115,18 @@ class gamePage extends Phaser.Scene {
                 correctAnswerGiven = true;
             } else {
                 console.log('Incorrect! Check your selections.');
+
+                // Remove a heart icon when the answer is incorrect
+                if (hearts.length > 0) {
+                    const removedHeart = hearts.pop();
+                    removedHeart.destroy();
+                }
+
+                // Check if the player has lost all lives
+                if (hearts.length === 0) {
+                    console.log('Game over! You ran out of lives.');
+                    this.scene.start("testGame"); // You may want to go back to the main menu or a game over scene
+                }
             }
         });
 
