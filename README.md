@@ -6,7 +6,7 @@
 Industry is a web-based game where players combine raw materials to create products.
 
 ## Navigation
-- **HomePage**: Contains credits, help, and start buttons.
+- **HomePage**: Contains credits, and start buttons.
 - **GamePages**: Where the gameplay takes place.
 
 ## Features
