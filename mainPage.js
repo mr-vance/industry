@@ -1,11 +1,13 @@
 class mainPage extends Phaser.Scene {
     constructor() {
         super("homePage");
-
         this.wrapRect;
     }
 
     preload() {
+        this.load.audio('theme', [
+            'assets/audio/mixkit-hip-hop-02-738.mp3'
+        ]);
         this.load.image('monitor', 'assets/backgrounds/monitor.png');
         this.load.image('background', 'assets/backgrounds/home-bg.jpg');
         this.load.image('emptyButton', 'assets/buttons/green_button.png');
@@ -13,6 +15,7 @@ class mainPage extends Phaser.Scene {
     }
 
     create() {
+
         //  This is our 'wrapping rectangle'
         //  When a sprite leaves this, it'll be wrapped around
         this.wrapRect = new Phaser.Geom.Rectangle(214, 132, 367, 239);
