@@ -78,7 +78,7 @@ class levelOne extends Phaser.Scene {
                 if (timeLeft <= 0) {
                     // Time's up, player loses the game
                     console.log('Time\'s up! You lose.');
-                    this.scene.start("homePage"); // You may want to go back to the main menu or a game over scene
+                    this.scene.start("levelOneOver"); // You may want to go back to the main menu or a game over scene
                 }
             }
         };
@@ -196,7 +196,7 @@ class levelOne extends Phaser.Scene {
                 // Check if the player has lost all lives
                 if (hearts.length === 0) {
                     console.log('Game over! You ran out of lives.');
-                    this.scene.start("homePage"); // You may want to go back to the main menu or a game over scene
+                    this.scene.start("levelOneOver"); // You may want to go back to the main menu or a game over scene
                 }
             }
         });

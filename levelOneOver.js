@@ -1,6 +1,6 @@
-class gameEnd extends Phaser.Scene {
+class levelOneOver extends Phaser.Scene {
     constructor() {
-        super("winnerPage");
+        super("levelOneOver");
         this.wrapRect;
     }
 
@@ -14,7 +14,7 @@ class gameEnd extends Phaser.Scene {
         //  When a sprite leaves this, it'll be wrapped around
         this.wrapRect = new Phaser.Geom.Rectangle(214, 132, 367, 239);
 
-        this.add.rectangle(this.wrapRect.x, this.wrapRect.y, this.wrapRect.width, this.wrapRect.height, 0x0094bf).setOrigin(0, 0);
+        this.add.rectangle(this.wrapRect.x, this.wrapRect.y, this.wrapRect.width, this.wrapRect.height, '#000000').setOrigin(0, 0);
 
         this.add.image(400, 300, 'monitor-frame');
 
@@ -22,10 +22,10 @@ class gameEnd extends Phaser.Scene {
         const centerX = this.wrapRect.x + this.wrapRect.width / 2;
         const centerY = this.wrapRect.y + this.wrapRect.height / 2;
 
-        const timerText = this.add.bitmapText(centerX, centerY, 'arcadeFont', `You Won!`, 25);
+        const timerText = this.add.bitmapText(centerX, centerY-20, 'arcadeFont', `You Lost!`, 25);
         timerText.setOrigin(0.5, 0.5);
 
-        const levelText = this.add.bitmapText(centerX - 20, centerY + 50, 'arcadeFont', `Press any key`, 7);
+        const levelText = this.add.bitmapText(centerX+10, centerY-90, 'arcadeFont', `Restart? '\n\n' [Y] '\t' [N]`, 15);
         levelText.setOrigin(0.5, -3);
 
         // Add a fade-in/fade-out animation to the text
@@ -41,8 +41,12 @@ class gameEnd extends Phaser.Scene {
         timerText.setTint(0x00ff00); // Green tint
 
         // Add a keyboard input listener
-        this.input.keyboard.once('keydown', () => {
-            this.scene.start("homePage"); // Return to the "homePage" scene when any key is pressed
+        this.input.keyboard.once('keydown-Y', () => {
+            this.scene.start("firstLevel"); // Go to "firstLevel" scene when 'Y' is pressed
+        });
+
+        this.input.keyboard.once('keydown-N', () => {
+            this.scene.start("homePage"); // Go to "homePage" scene when 'N' is pressed
         });
     }
 

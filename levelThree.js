@@ -61,7 +61,7 @@ class levelThree extends Phaser.Scene {
         const timerText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Time: ${timeLeft}`, 20);
         timerText.setOrigin(0.5, 0.5);
 
-        const levelText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Military industry: How do send a message?`, 7);
+        const levelText = this.add.bitmapText(centerX - 20, centerY - 100, 'arcadeFont', `Military industry: A message has to be sent.`, 7);
         levelText.setOrigin(0.5, -3);
 
         // Flag to track if the correct answer has been given
@@ -77,7 +77,7 @@ class levelThree extends Phaser.Scene {
                 if (timeLeft <= 0) {
                     // Time's up, player loses the game
                     console.log('Time\'s up! You lose.');
-                    this.scene.start("homePage"); // You may want to go back to the main menu or a game over scene
+                    this.scene.start("levelThreeOver"); // You may want to go back to the main menu or a game over scene
                 }
             }
         };
@@ -195,7 +195,7 @@ class levelThree extends Phaser.Scene {
                 // Check if the player has lost all lives
                 if (hearts.length === 0) {
                     console.log('Game over! You ran out of lives.');
-                    this.scene.start("homePage"); // You may want to go back to the main menu or a game over scene
+                    this.scene.start("levelThreeOver"); // You may want to go back to the main menu or a game over scene
                 }
             }
         });
